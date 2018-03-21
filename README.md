@@ -82,3 +82,13 @@ Curl snippet:
 curl -X DELETE \
   http://localhost:3000/turds/${IMAGE_NAME} \
 ```
+
+## Docker
+
+To run the app in a dockerized environment just use:
+
+`docker build -t name/node-web-app .`
+
+and
+
+`docker run -p ${PORT}:3000 asd123/node-web-app` where ${PORT} is your desired port
