@@ -1,5 +1,7 @@
 # shit-city-image-upload
 
+[![Build Status](https://travis-ci.org/thr33think/shit-city-image-upload.svg?branch=master)](https://travis-ci.org/thr33think/shit-city-image-upload)
+
 Image upload service for the Threethink shit-city Project
 
 ## Getting started
