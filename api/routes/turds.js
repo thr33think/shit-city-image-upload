@@ -29,8 +29,6 @@ const upload = multer({
   fileFilter: fileFilter
 });
 
-
-
 router.post('/', upload.single('turdImage'), (req, res, next) => {
   if(req.file){
     res.status(201).json({
