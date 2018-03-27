@@ -2,7 +2,7 @@ version: '2.3'
 services:
   shit-city-image-upload:
     image: threethink/shit-city-image-upload-service:${TRAVIS_COMMIT}
-    scale: 2
+    scale: 1
     labels:
       - "traefik.enable=true"
       - "traefik.backend=shit-city-image-upload"
