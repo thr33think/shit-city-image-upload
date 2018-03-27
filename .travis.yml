@@ -13,7 +13,7 @@ services:
 before_install:
 - openssl aes-256-cbc -K $encrypted_fb7ffa7efc8b_key -iv $encrypted_fb7ffa7efc8b_iv
   -in docker-creds.tar.enc -out docker-creds.tar -d
-- tar xvf docker-secrets.tar
+- tar xvf docker-creds.tar
 - docker login -u $DOCKER_USER -p $DOCKER_PASS
 stages:
 - name: build
@@ -27,6 +27,6 @@ jobs:
   - stage: deploy
     env:
     - secure: XRBGAIRxvPeFLYHEJWie1BzHYQxmFIX2Nux0PtKnb1x49/ib39gEZ15OR7tvsJMGkiQH+fW6HmxlZMFPSftSCeLn03/ag50lqirK+vYIIHhxK5ALwiJzWZf9tjpkcd4OGbGtrmrgxpjxpVca77OB317m3doey6NEaVdCDydvfayqPkwfLj2Yao+/wtDxtrMsiME6BT57dk4GyWFrhDeerCoqOi1zWDrhUPqxx8fF/NIE1oNgk8FCsvL7JHCZWaTOtEB3nFEGbjgJvKPI+Sc+qwcVJj+No3aijUKC7/6Xj2pJv+m7TU6IA1EY+IAuKi6Fut6MyyOt8FEPEiy0koHPXkp8WcftQIecNRdDn1aXrmyWfSYvIots4eFx7ufwIH87M/ELMu1/BjmLpHKBpnxCjHfcEReePbKpXNkykRHBfzDlAdsq2xfAAtIex3Va9Gx4hNWC4ZfJ3ThBPYBKKxnGgjVvpWPXkhIwJpwaAknOIrO5U+SXxwk3oZf7ccWph5+mkEcOye07W95ayDqFcVCk8o7UdEQ3Wq6runobKtg1IyRmeXPhx+C+yc+GaKK/d7ynAjwcskunvmJBpxw+yx5IfStEvnfDXUACek8Ya7dnT/djmAQtvk/QdsguB92dNISBB74HRtEjzi+oI5a7dRGmNtzu75/DCQjWKP/S4I6nPVk=
-    - DOCKER_CERT_PATH="./docker-remote-secrets"
+    - DOCKER_CERT_PATH="./docker-creds"
     - DOCKER_TLS_VERIFY="True"
     script: docker-compose up -d
