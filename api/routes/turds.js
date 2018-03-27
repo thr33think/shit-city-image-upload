@@ -40,7 +40,7 @@ router.post('/', upload.single('turdImage'), (req, res, next) => {
 });
 
 router.delete('/:imagename', (req, res, next) => {
-  fs.unlink(`uploads/${req.params.imagename}`, () => {
+  fs.unlink(`./uploads/${req.params.imagename}`, () => {
     res.status(200).json({
         message: 'Turd deleted'
     });

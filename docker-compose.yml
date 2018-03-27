@@ -14,7 +14,7 @@ services:
     mem_limit: 1500000000
     restart: on-failure
     volumes:
-      - "/data/images/uploads:/uploads"    
+      - "/data/images/uploads:./uploads"    
     networks:
       - production #let it be accessable from everywhere for testing purposes
 networks:
