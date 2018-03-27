@@ -1,11 +1,11 @@
 version: '2.3'
 services:
   shit-city-image-upload:
-    image: threethink/shit-city-image-upload:${TRAVIS_COMMIT}
+    image: threethink/shit-city-image-upload-service:${TRAVIS_COMMIT}
     scale: 2
     labels:
       - "traefik.enable=true"
-      - "traefik.backend=shit-city-image-upload" #backend name
+      - "traefik.backend=shit-city-image-upload"
       - "traefik.port=3000"
       - "traefik.frontend.rule=Host:image-upload.andimenge.de"
       - "traefik.frontend.auth.basic=app:$$apr1$$G9D2C9xd$$U943CoG6f94md2hl86zae/" #escape single $ with another $
@@ -16,7 +16,7 @@ services:
     volumes:
       - "/data/images/uploads:/uploads"    
     networks:
-      - production
+      - production #let it be accessable from everywhere for testing purposes
 networks:
   production:
-    external: true #let it be accessable from everywhere for testing purposes
+    external: true

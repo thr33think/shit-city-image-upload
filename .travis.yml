@@ -6,7 +6,9 @@ node_js:
 - '7'
 env:
   global:
+    #DOCKER_USER
   - secure: A99Lx1l6uQ3ctJNFRO65V1URIrEjZMgrY0uWHodVVD6a8tUctm6lng6b4MiTU2qXOMWewVHnFXOBxcc/llB+SkxmV+lkcfFD69hoMbGJApdJD5hhouLB1pkQuGeFNEGbac+QHi6gY16nbdwZWRWZkp4FEkFbV3c/3GzVd21DTMGkqz5GVlIC1nGMOiKhq66zIDUOEF64tg6C/OHWFV1ZxTAWUHHtd01NbT0IywI6NENbZAM36lICOHvUGLiCUf/nmcgB/g5D4zSVYsxnDnLdKaaEGfWkdS4BiFaA8O81UqX46N3mh8E1m2ZARUT3k1yWaLVpWhDiBw+OQ4ZHAWWU6AygQsjMgd57Yxk8Pw7ndxd12imseq9In3akBqarljcCyc8UdPH3zrqn0X3ysJXEe29o/5pz0j3pZRa+2f9eitVr8MK7TySJmqNnw+Msrr/R9ENLpHkxtCKdy5GgPfBITSu3TGib4fZOHJ0H6gVYqWldfUxj7Ox7cDCMTVbWs1azW+XYIiAQiXDvRU+Sbj5Q+k2cDLH76PuDE3KYEdUlk87tcXk/iopKqIZ9vvDCAPQOq3IbMLqhMMWJZFrAEjbXOrbBLDg6XUZuY0BOMW/vXIM8Wtkl2esOwHx/pML6+dVihb5PZ1wCoBzs/3deECKTSnmUf80OCowdk36+4NwIk8Y=
+    #DOCKER_PW
   - secure: PQTJ6TGC0YAC81C4PGxSf7Bz3SwIYV6kBHFFdqlPebL7Srjr2yJnRjX9LuJo+Iog/7VLxFLxIP9Fzrd18y6XneEhRaxj4fCHcf0eYJLF8Fg3X/Bvd7dOc2Zc5uJSAgxf30M7LwiBdBDvRs4OFyaLFKYIvMBov4h5FDPKE9RR5YQ9CbV6AFnbZMtFwBeomxk2peP29myjPCNym8oL6QHiEgUePSYIF55rimzNfcS/xcHU7SCRO+WjADgTqtSr73zPPBIlGHPmFNU+ymVMjAjytkPQ4cPQRAease5KBRHkuiFW4K7hg5iGQSEnCjBekBh5reQ+J86JtgoA5oQh2/fyZq7XG2+pWRt/eWUZso76BqqVCdP4Ir8gSvRfkkPTBAD/2io57hkPdJhom68DfrwmyxgSHJqzYJV6e6AwBR42LoAUoOMM0t+MY4Uxuqb2JfkP7Bcw46RUTxd34Yw+O/0HTkL+q7eYqHd29zRU6cthVjQH9MrHCFjnN7M5/XaeTUYCx2x2gkz+MSdq91qulNRI8APZyNry3sX+m6uOTyRBd5C/oJrSpO+ZcW5mYx6CXJXYDwlx1PNnN9Oqn/fVzLvZUkzR1JVwfwcOSnZjSMQRd498v07o5bCKZB77G1hOPGJiJVrVU8D2evwSrIRtIlVpTiL14HJr+yZ8MSX5GEdXuRA=
 services:
 - docker
@@ -22,8 +24,8 @@ jobs:
   include:
   - stage: build
     script:
-    - docker build -t threethink/shitcity-image-upload-service .
-    - docker push
+    - docker build --pull --rm -t threethink/shit-city-image-upload-service:${TRAVIS_COMMIT} .
+    - docker push threethink/shit-city-image-upload-service:${TRAVIS_COMMIT}
   - stage: deploy
     env:
     - secure: XRBGAIRxvPeFLYHEJWie1BzHYQxmFIX2Nux0PtKnb1x49/ib39gEZ15OR7tvsJMGkiQH+fW6HmxlZMFPSftSCeLn03/ag50lqirK+vYIIHhxK5ALwiJzWZf9tjpkcd4OGbGtrmrgxpjxpVca77OB317m3doey6NEaVdCDydvfayqPkwfLj2Yao+/wtDxtrMsiME6BT57dk4GyWFrhDeerCoqOi1zWDrhUPqxx8fF/NIE1oNgk8FCsvL7JHCZWaTOtEB3nFEGbjgJvKPI+Sc+qwcVJj+No3aijUKC7/6Xj2pJv+m7TU6IA1EY+IAuKi6Fut6MyyOt8FEPEiy0koHPXkp8WcftQIecNRdDn1aXrmyWfSYvIots4eFx7ufwIH87M/ELMu1/BjmLpHKBpnxCjHfcEReePbKpXNkykRHBfzDlAdsq2xfAAtIex3Va9Gx4hNWC4ZfJ3ThBPYBKKxnGgjVvpWPXkhIwJpwaAknOIrO5U+SXxwk3oZf7ccWph5+mkEcOye07W95ayDqFcVCk8o7UdEQ3Wq6runobKtg1IyRmeXPhx+C+yc+GaKK/d7ynAjwcskunvmJBpxw+yx5IfStEvnfDXUACek8Ya7dnT/djmAQtvk/QdsguB92dNISBB74HRtEjzi+oI5a7dRGmNtzu75/DCQjWKP/S4I6nPVk=
