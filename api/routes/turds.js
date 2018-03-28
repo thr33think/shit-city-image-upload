@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const fs = require('fs');
 const multer = require('multer');
+const path = require('path');
 
 const storage = multer.diskStorage({
   destination: function(req, file, cb) {
@@ -27,6 +28,10 @@ const upload = multer({
     fileSize: parseInt(process.env.IMAGE_SIZE)
   },
   fileFilter: fileFilter
+});
+
+router.get('/:imagename', (req, res, next) => {
+  res.sendFile(`${path.dirname(require.main.filename)}/uploads/${req.params.imagename}`);
 });
 
 router.post('/', upload.single('turdImage'), (req, res, next) => {
